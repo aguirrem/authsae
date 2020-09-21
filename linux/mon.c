@@ -169,7 +169,8 @@ static void add_interface(char *ptr) {
     fprintf(stderr, "failed to malloc space for new interface %s!\n", ptr);
     return;
   }
-  strncpy(inf->ifname, ptr, strlen(ptr));
+  memset(inf->ifname,0,IFNAMSIZ);
+  strncpy(inf->ifname, ptr, IFNAMSIZ-1);
 
   /*
    * see if this is a loopback interface

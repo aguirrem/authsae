@@ -2526,7 +2526,8 @@ compute_group_definition(GD *grp, char *password, unsigned short num) {
     goto fail;
   }
   grp->group_num = num;
-  strncpy(grp->password, password, sizeof(grp->password));
+  memset(grp->password,0,sizeof(grp->password));
+  strncpy(grp->password, password, sizeof(grp->password)-1);
 
   if (0) {
   fail:

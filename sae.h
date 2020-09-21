@@ -50,7 +50,7 @@
 struct sae_config {
   int group[SAE_MAX_EC_GROUPS];
   int num_groups;
-  char pwd[SAE_MAX_PASSWORD_LEN];
+  char pwd[SAE_MAX_PASSWORD_LEN+1];
   int debug;
   int retrans;
   int pmk_expiry;

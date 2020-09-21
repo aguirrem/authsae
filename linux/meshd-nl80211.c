@@ -1550,7 +1550,8 @@ static int meshd_parse_libconfig(
 
   if (config_setting_lookup_string(
           meshd_section, "interface", (const char **)&str)) {
-    strncpy(config->interface, str, IFNAMSIZ + 1);
+    memset(config->interface, 0, sizeof(config->interface));
+    strncpy(config->interface, str, IFNAMSIZ);
     if (config->interface[IFNAMSIZ] != 0) {
       fprintf(stderr, "Interface name is too long\n");
       return -1;
@@ -1665,7 +1666,7 @@ static int meshd_parse_libconfig(
   if (config_setting_lookup_string(
           meshd_section, "bridge", (const char **)&str)) {
     memset(config->bridge, 0, sizeof(config->bridge));
-    strncpy(config->bridge, str, sizeof(config->bridge));
+    strncpy(config->bridge, str, IFNAMSIZ);
     if (config->bridge[sizeof(config->bridge) - 1]) {
       fprintf(stderr, "Bridge name is too long\n");
       return -1;

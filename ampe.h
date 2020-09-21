@@ -96,7 +96,7 @@ struct meshd_config {
   int hwmp_root_interval;
 
   int rekey_enable;
-  char bridge[IFNAMSIZ];
+  char bridge[IFNAMSIZ+1];
   int rekey_multicast_group_family;
   ip_address rekey_multicast_group_address; /* in network byte order */
   int rekey_ping_port; /* in network byte order */

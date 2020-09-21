@@ -1664,6 +1664,7 @@ static int meshd_parse_libconfig(
 
   if (config_setting_lookup_string(
           meshd_section, "bridge", (const char **)&str)) {
+    memset(config->bridge, 0, sizeof(config->bridge);
     strncpy(config->bridge, str, sizeof(config->bridge));
     if (config->bridge[sizeof(config->bridge) - 1]) {
       fprintf(stderr, "Bridge name is too long\n");

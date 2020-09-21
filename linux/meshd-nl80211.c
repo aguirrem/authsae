@@ -237,6 +237,7 @@ static int get_mac_addr(const char *ifname, uint8_t *macaddr) {
   fd = socket(AF_INET, SOCK_DGRAM, 0);
 
   ifr.ifr_addr.sa_family = AF_INET;
+  memset(ifr.ifr_name,0,IFNAMSIZ);
   strncpy(ifr.ifr_name, ifname, IFNAMSIZ - 1);
 
   if (ioctl(fd, SIOCGIFHWADDR, &ifr)) {
